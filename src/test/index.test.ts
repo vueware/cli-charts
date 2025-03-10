@@ -1,4 +1,4 @@
-import { BarChart } from "../barchart";
+import { BarChart } from "../index";
 
 describe("BarChart", () => {
   it("should generate a bar chart with labels and colors", () => {
