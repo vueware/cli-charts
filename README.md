@@ -27,6 +27,6 @@ const data: BarData[] = [
   { label: "Elderberries", value: 30, color: "magenta" },
 ];
 
-const chart = bar(data);
-console.log(chart);
+const chart = new BarChart(data);
+console.log(chart.generate());
 ```
