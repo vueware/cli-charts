@@ -8,5 +8,6 @@ declare module "@vueware/cli-charts" {
     label: string;
     value: number;
     color: string;
+    valueFormatter?: (value: number) => string;
   };
 }

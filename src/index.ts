@@ -2,6 +2,7 @@ export type BarData = {
   label: string;
   value: number;
   color: string;
+  valueFormatter?: (value: number) => string;
 };
 
 const colors: Record<string, string> = {
@@ -40,11 +41,14 @@ export class BarChart {
     const normalizedData = this.normalizeData();
     let chart = "";
     this.data.forEach((item, index) => {
-      const { label, color } = item;
+      const { label, color, value, valueFormatter } = item;
       const barLength = normalizedData[index];
-      chart += `${label.padEnd(15)} ${color}${"█".repeat(barLength)}\x1b[0m ${
-        item.value
-      }\n`;
+      const formattedValue = valueFormatter
+        ? valueFormatter(value)
+        : value.toString();
+      chart += `${label.padEnd(15)} ${color}${"█".repeat(
+        barLength
+      )}\x1b[0m ${formattedValue}\n`;
     });
 
     return chart;
