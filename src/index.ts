@@ -1,8 +1,8 @@
-export interface BarData {
+export type BarData = {
   label: string;
   value: number;
   color: string;
-}
+};
 
 const colors: Record<string, string> = {
   red: "\x1b[31m",
