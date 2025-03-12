@@ -20,11 +20,24 @@ Import and use the `bar` function to generate a Bar Chart:
 import { BarChart, BarData } from "@vueware/cli-charts";
 
 const data: BarData[] = [
-  { label: "Apples", value: 10, color: "red" },
-  { label: "Bananas", value: 15, color: "green" },
-  { label: "Cherries", value: 20, color: "blue" },
-  { label: "Dates", value: 25, color: "yellow" },
-  { label: "Elderberries", value: 30, color: "magenta" },
+  {
+    label: "Salary",
+    value: 10,
+    color: "red",
+    valueFormatter: (v) => `€ ${v.toFixed(2)}`,
+  },
+  {
+    label: "Bonus",
+    value: 2.5,
+    color: "yellow",
+    valueFormatter: (v) => `€ ${v.toFixed(2)}`,
+  },
+  {
+    label: "Investment",
+    value: 3,
+    color: "blue",
+    valueFormatter: (v) => `€ ${v.toFixed(2)}`,
+  },
 ];
 
 const chart = new BarChart(data);
