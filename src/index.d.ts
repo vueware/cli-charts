@@ -4,9 +4,9 @@ declare module "@vueware/cli-charts" {
     generate(): string;
   }
 
-  export interface BarData {
+  export type BarData = {
     label: string;
     value: number;
     color: string;
-  }
+  };
 }
