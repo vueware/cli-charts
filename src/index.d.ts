@@ -1,6 +1,9 @@
 declare module "@vueware/cli-charts" {
   export class BarChart {
-    constructor(data: { label: string; value: number; color: string }[]);
+    constructor(
+      data: { label: string; value: number; color: string }[],
+      title?: string
+    );
     generate(): string;
   }
 

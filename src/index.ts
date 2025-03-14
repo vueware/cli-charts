@@ -18,14 +18,13 @@ const colors: Record<string, string> = {
 
 export class BarChart {
   private data: BarData[];
-  private width: number;
-
-  constructor(data: BarData[], width: number = 40) {
+  private title?: string;
+  constructor(data: BarData[], title?: string) {
     this.data = data.map((item) => ({
       ...item,
       color: colors[item.color] || item.color,
     }));
-    this.width = width;
+    this.title = title;
   }
 
   private getMaxValue(): number {
@@ -34,22 +33,38 @@ export class BarChart {
 
   private normalizeData(): number[] {
     const max = this.getMaxValue();
-    return this.data.map((d) => Math.round((d.value / max) * this.width));
+    return this.data.map((d) => Math.round((d.value / max) * 40));
+  }
+
+  private formatTitle(title: string): string {
+    return ` \x1b[1m\x1b[34m${title.toUpperCase()}\x1b[0m`;
   }
 
   public generate(): string {
     const normalizedData = this.normalizeData();
     let chart = "";
+
+    chart += `+${"-".repeat(40 * 2)}+\n`;
+
+    if (this.title) {
+      const titleLine = `${this.formatTitle(this.title)}\n`;
+      chart += titleLine;
+    }
+
+    chart += `+${"-".repeat(40 * 2)}+\n`;
+
     this.data.forEach((item, index) => {
       const { label, color, value, valueFormatter } = item;
       const barLength = normalizedData[index];
       const formattedValue = valueFormatter
         ? valueFormatter(value)
         : value.toString();
-      chart += `${label.padEnd(15)} ${color}${"█".repeat(
+      chart += ` ${label.padEnd(15)} ${color}${"█".repeat(
         barLength
       )}\x1b[0m ${formattedValue}\n`;
     });
+
+    chart += `+${"-".repeat(40 * 2)}+\n`;
 
     return chart;
   }

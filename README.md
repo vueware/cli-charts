@@ -14,7 +14,7 @@ npm install @vueware/cli-charts
 
 ## Usage
 
-Import and use the `bar` function to generate a Bar Chart:
+Import and use the `BarChart` and `BarData` function to generate a Bar Chart:
 
 ```bash
 import { BarChart, BarData } from "@vueware/cli-charts";
@@ -40,6 +40,18 @@ const data: BarData[] = [
   },
 ];
 
-const chart = new BarChart(data);
+const chart = new BarChart(data, "Income");
 console.log(chart.generate());
+```
+
+## Result
+
+```
++--------------------------------------------------------------------------------+
+ INCOME
++--------------------------------------------------------------------------------+
+ Salary          ████████████████████████████████████████ € 10.00
+ Bonus           ██████████ € 2.50
+ Investment      ████████████ € 3.00
++--------------------------------------------------------------------------------+
 ```
